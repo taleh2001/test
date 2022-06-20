@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма обратной связи + отправка на почту!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form class="feedback" method="POST">
+
+        <input type="hidden" name="project_name" value="Artem_larch YouTube">
+		<input type="hidden" name="admin_email" value="admin@mail.com">
+		<input type="hidden" name="form_subject" value="Фидбек сайта site.com">
+
+        <h2>Напишите нам</h2>
+        <label>Введите Ваше имя</label>
+        <input type="text" name="Name" placeholder="Enter name" required>
+        <label>Введите Вашу эл. почту</label>
+        <input type="email" name="E-mail" placeholder="Enter email" required>
+        <label>Введите Ваш номер телефона</label>
+        <input type="tel" name="Phone" placeholder="Enter phone">
+        <label>Введите сообщение</label>
+        <textarea name="Message" cols="30" rows="5" placeholder="Enter message"></textarea>
+        <button class="send">Отправить</button>
+        <div class="thanks">Спасибо за Ваше сообщение, мы обязательно прочтем его и по возможности ответим!</div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
