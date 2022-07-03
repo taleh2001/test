@@ -7,8 +7,7 @@ const form = document.getElementById('form')
 
 
 let store = {
-    city: 'Baku',
-    feelslike: 0,   
+    city: 'Baku',  
     temperature: 0,   
     observationTime: "00:00 AM",
     isDay: "yes",
@@ -25,11 +24,14 @@ let store = {
 }
 
 const fetchData = async () => {
-    const result = await fetch(`${link}&query=${store.city}`)
+try {
+    const query = localStorage.getItem('query') || store.city
+    const result = await fetch(`${link}&query=${query}`)
     const data = await result.json()
 
     const {
         current: {
+
             cloudcover,
              temperature,
               humidity,
@@ -40,14 +42,15 @@ const fetchData = async () => {
               is_day :isDay,
                weather_descriptions: descriptions,
                 wind_speed: windSpeed
-            }
+            },
+            location: {name}
     } = data
 
     console.log(data)
 
     store = {
         ...store,
-        // feelslike,
+        city: name,
         temperature,     
         observationTime,
         isDay,
@@ -86,6 +89,9 @@ const fetchData = async () => {
           },
     }
     renderComponent()
+} catch (error) {
+    console.log(error)
+}
     
 }
 const getImages = (descriptions) =>{
@@ -118,8 +124,7 @@ const renderProperty = (properties) => {
                 <div class="property-info__description">${title}</div>
               </div>
             </div>`;
-      })
-      .join("");
+      }).join("");
   };
 
 const markup = () => {
@@ -152,29 +157,36 @@ const containerClass = isDay === "yes" ? 'is-day' : ""
 }
 
 
-const toggleClass = () => {
+const togglePopupClass = () => {
     popup.classList.toggle('active')
 }
 
 const renderComponent = () => {
     root.innerHTML = markup()
     const city = document.getElementById('city')
-    city.addEventListener('click', toggleClass)
+    city.addEventListener('click', togglePopupClass)
 
 }
 
 const handleInput =(e) => {
     store = {
         ...store,
-        city: e.target.value
-    }
+        city: e.target.value,
+    };
 
 }
 
 const handleSubmit = (e) => {
     e.preventDefault()
+
+    const value = store.city
+
+    if(!value) return null
+
+    localStorage.setItem('query', value)
+
     fetchData()
-    toggleClass()
+    togglePopupClass()
 }
 
 form.addEventListener('submit', handleSubmit)
