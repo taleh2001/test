@@ -1,46 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="app">
-      <div id="root">
-        <img class="loader" src="./img/loader.gif" alt="loader" />
-      </div>
-
-      <div class="popup" id="popup">
-        <form action="GET" class="form" id="form">
-          <div class="form-group">
-            <input
-              type="text"
-              value=""
-              name="city"
-              class="form-input"
-              id="text-input"
-              placeholder="London"
-              required
-            />
-            <input
-              type="submit"
-              class="form-submit"
-              id="submit-button"
-              value="OK"
-            />
-          </div>
-        </form>
-
-        <div class="popup-close" id="close">
-          <span></span>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Рандомная кошка</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Кошка API</h2>
+        <div class="card">
+            <img src="img/cat-default.jpg" alt="Тут кошка" class="img">
         </div>
-      </div>
+        <button class="btn" type="button">Рандомная кошка</button>
     </div>
 
-    <script src="./script.js"></script>
-  </body>
+
+<script src="js/app.js"></script>
+</body>
 </html>
